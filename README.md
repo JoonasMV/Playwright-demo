@@ -16,7 +16,7 @@ To install playwright globally run
 npm install -g playwright
 ```
 
-This installs the latests playwright version
+This installs the latest playwright version
 
 To run tests use the command
 
