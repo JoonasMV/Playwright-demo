@@ -14,11 +14,35 @@ test.describe('Main page validation', () => {
   })
 
   test("validate page", async () => {
-    await checkA11y(page, null, {
+    const results = await checkA11y(page, null, {
       detailedReport: true,
       detailedReportOptions: {
         html: true
       }
+    }, (violations) => {
+      console.log(violations)
     })
   })
 });
+
+test.describe('Episode page validation', () => {
+  test.beforeAll(async () => {
+    browser = await chromium.launch()
+    page = await browser.newPage()
+    await page.goto("https://areena.yle.fi/1-3339547")
+
+    await injectAxe(page)
+  })
+
+  test("validate page", async () => {
+    const results = await checkA11y(page, null, {
+      detailedReport: true,
+      detailedReportOptions: {
+        html: true
+      }
+    }, (violations) => {
+      console.log(violations)
+    })
+  })
+});
+

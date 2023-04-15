@@ -8,7 +8,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.32.2",
+    "@playwright/test": "^1.32.3",
     "@testcafe-community/axe": "^3.5.0",
     "axe-core": "^4.6.3",
     "axe-html-reporter": "^2.2.3",

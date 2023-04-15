@@ -23,6 +23,11 @@ To run tests use the command
 ```
 npx playwright test
 ```
+To show html report after test
+
+```
+npx playwright show-report
+```
 
 ## Suites
 
