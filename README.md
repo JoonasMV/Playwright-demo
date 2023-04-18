@@ -23,7 +23,7 @@ To run tests use the command
 ```
 npx playwright test
 ```
-To show html report after test
+To show html report after test, validation violations and errors can be found from stdout file.
 
 ```
 npx playwright show-report
