@@ -1,9 +1,22 @@
-const { test, expect } = require('@playwright/test')
+const { test } = require('../fixtures.js')
+const { expect } = require('@playwright/test')
 
 const url = 'https://areena.yle.fi/tv'
 
-test('Error is shown if email wrong', async ({ page }) => {
+test('Error is shown if email wrong', async ({ page, browserName }) => {
   await page.goto(url)
+
+  if (browserName == 'firefox') {
+    const cookies = page.getByRole('button', { name: 'Hyväksy kaikki' })
+
+    if (cookies) {
+      await cookies.click()
+      await new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000)
+      })
+    }
+  }
+
   await page.getByRole('button', { name: 'Kirjaudu', exact: true }).click({ delay: 100 })
   await page
     .frameLocator('internal:role=dialog[name="kirjaudu sisään"i] >> iframe')
@@ -25,8 +38,18 @@ test('Error is shown if email wrong', async ({ page }) => {
   await expect(error).toBeVisible()
 })
 
-test('Success if email is valid', async ({ page }) => {
+test('Success if email is valid', async ({ page, browserName }) => {
   await page.goto(url)
+  if (browserName == 'firefox') {
+    const cookies = page.getByRole('button', { name: 'Hyväksy kaikki' })
+
+    if (cookies) {
+      await cookies.click()
+      await new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000)
+      })
+    }
+  }
   await page.getByRole('button', { name: 'Kirjaudu', exact: true }).click({ delay: 100 })
   await page
     .frameLocator('internal:role=dialog[name="kirjaudu sisään"i] >> iframe')

@@ -1,5 +1,5 @@
 // @ts-check
-const { defineConfig, devices } = require('@playwright/test')
+const { defineConfig } = require('@playwright/test')
 
 /**
  * Read environment variables from file.
@@ -21,14 +21,11 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    ['list'],
-    ["html"]
-  ],
+  reporter: [['list'], ['html']],
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless: false,
+    headless: true,
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
@@ -39,10 +36,27 @@ module.exports = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'chrome@latest:Windows 10@browserstack',
+      use: {
+        browserName: 'chromium',
+        channel: 'chrome',
+      },
     },
-
+    {
+      name: 'playwright-firefox@latest:OSX Catalina@browserstack',
+      use: {
+        browserName: 'firefox',
+        ignoreHTTPSErrors: true,
+      },
+    },
+    {
+      name: 'playwright-webkit@latest:OSX Big Sur@browserstack',
+      use: {
+        browserName: 'webkit',
+        // Config to use playwright emulated devices.
+        // ...devices['iPhone 12 Pro Max'],
+      },
+    },
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },

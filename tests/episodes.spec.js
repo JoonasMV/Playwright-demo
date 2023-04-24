@@ -1,10 +1,23 @@
-const { test, expect } = require('@playwright/test')
+const { test } = require('../fixtures.js')
+const { expect } = require('@playwright/test')
 
 const url = 'https://areena.yle.fi/1-3339547'
 
-test('Contains 3rd season', async ({ page }) => {
+test('Contains 3rd season', async ({ page, browserName }) => {
   await page.goto(url)
+  if (browserName == 'firefox') {
+    await new Promise((resolve, reject) => {
+      setTimeout(resolve, 2000)
+    })
+    const cookies = page.getByRole('button', { name: 'Hyväksy kaikki' })
 
+    if (cookies) {
+      await cookies.click()
+      await new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000)
+      })
+    }
+  }
   await expect(page).toHaveTitle(/Kummeli/)
 
   const season3Button = page.getByRole('button', { name: 'Kausi 3' })
@@ -12,8 +25,21 @@ test('Contains 3rd season', async ({ page }) => {
   await expect(season3Button).toBeVisible()
 })
 
-test('5th episode contains correct name', async ({ page }) => {
+test('5th episode contains correct name', async ({ page, browserName }) => {
   await page.goto(url)
+  if (browserName == 'firefox') {
+    await new Promise((resolve, reject) => {
+      setTimeout(resolve, 2000)
+    })
+    const cookies = page.getByRole('button', { name: 'Hyväksy kaikki' })
+
+    if (cookies) {
+      await cookies.click()
+      await new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000)
+      })
+    }
+  }
   const season3Button = page.getByRole('button', { name: 'Kausi 3' })
 
   await season3Button.click()
@@ -23,8 +49,23 @@ test('5th episode contains correct name', async ({ page }) => {
   await expect(episode).toBeVisible()
 })
 
-test('5th episode contains correct date', async ({ page }) => {
+test('5th episode contains correct date', async ({ page, browserName }) => {
   await page.goto(url)
+
+  if (browserName == 'firefox') {
+    await new Promise((resolve, reject) => {
+      setTimeout(resolve, 2000)
+    })
+    const cookies = page.getByRole('button', { name: 'Hyväksy kaikki' })
+
+    if (cookies) {
+      await cookies.click()
+      await new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000)
+      })
+    }
+  }
+
   const season3Button = page.getByRole('button', { name: 'Kausi 3' })
 
   await season3Button.click()
