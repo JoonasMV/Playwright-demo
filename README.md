@@ -46,3 +46,20 @@ Tests can be found in the `tests` directory
 - User email validation
 - Episode validation
 - 22:00 news time and name checking
+
+## What went well
+
+- All required tests were implemented
+- All tests passed on Chrome, Firefox and Webkit atleast once.
+
+## Challenges
+
+- Learning BrowserStack
+- Getting tests on Firefox to pass
+- Had to read a lot of documentation about BrowserStack and Playwright
+
+## What we learned
+
+- Ui testing
+- How to quite easily automate testing on multiple browsers
+- Useful tools for automated UI testing, RPA and accessibility testing
