@@ -54,7 +54,7 @@ Tests can be found in the `tests` directory
 
 ## Challenges
 
-- Learning BrowserStack
+- Understanding how BrowserStack works
 - Getting tests on Firefox to pass
 - Had to read a lot of documentation about BrowserStack and Playwright
 
