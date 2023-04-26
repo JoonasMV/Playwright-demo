@@ -46,6 +46,7 @@ Tests can be found in the `tests` directory
 - User email validation
 - Episode validation
 - 22:00 news time and name checking
+- Accessibility tests
 
 ## What went well
 
